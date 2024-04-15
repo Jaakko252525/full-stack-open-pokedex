@@ -21,8 +21,12 @@ module.exports = {
   ],
   "rules": {
     "indent": [
+      "off",
       "error",
         2
+      ],
+      "no-unused-vars": [
+        "off"
       ],
     "linebreak-style": [
       "error",
@@ -34,11 +38,10 @@ module.exports = {
       "double"
     ],
     "semi": [
-      "error",
-      "never"
+      "off"
     ],
     "eqeqeq": "error",
-    "no-trailing-spaces": "error",
+    "no-trailing-spaces": "off",
     "object-curly-spacing": [
       "error", "always"
     ],
