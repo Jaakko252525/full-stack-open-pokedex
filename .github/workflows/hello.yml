@@ -12,3 +12,9 @@ jobs:
       - name: Say hello
         run: |
           echo "Hello World!"
+  echoing-dir-n-data:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: echo shi..
+        run: |
+          echo ls, date
