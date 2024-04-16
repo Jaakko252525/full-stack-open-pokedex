@@ -20,4 +20,9 @@ jobs:
         run: npm run build
       - name: Test app
         run: npm run test
+      - name: Trigger deployment
+        run: curl --request GET \
+          --url 'https://api.render.com/v1/services?limit=20' \
+          --header 'Accept: application/json' \
+          --header 'Authorization: Bearer <%= ENV['RENDER_API_SECRET'] %>'
        
