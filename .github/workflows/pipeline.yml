@@ -20,6 +20,8 @@ jobs:
         run: npm run build
       - name: Test app
         run: npm run test
+      - name: e2e test app
+        run: npm run e2etest
 
 
         
