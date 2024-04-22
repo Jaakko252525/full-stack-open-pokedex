@@ -41,4 +41,4 @@ jobs:
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         if: ${{ !contains(env.COMMIT_MESSAGES, '#skip') && github.event_name == 'push'}}
-        run: echo "commit dont have skip"
+        run: echo "commit dont have skip!"
