@@ -40,5 +40,5 @@ jobs:
       - name: commit messages
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-        if: ${{ !contains('Hello world', 'llo') && github.event_name == 'push'}}
+        if: ${{ !contains('Hello world', 'Siuu') && github.event_name == 'push'}}
         run: echo "$COMMIT_MESSAGES"
