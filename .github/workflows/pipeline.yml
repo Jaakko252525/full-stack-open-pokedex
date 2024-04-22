@@ -27,18 +27,16 @@ jobs:
       - name: Test app
         run: npm run test
       - name: Trigger deployment
-        if: ${{github.event_name == 'push'}}
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+        if: ${{ !contains(env.COMMIT_MESSAGES, '#skip') && github.event_name == 'push'}}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
 
       - name: Bump version and push tag
-        if: ${{github.event_name == 'push'}}
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+        if: ${{ !contains(env.COMMIT_MESSAGES, '#skip') && github.event_name == 'push'}}
         uses: anothrNick/github-tag-action@1.64.0 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
           WITH_V: false
-
-      - name: commit messages
-        env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-        if: ${{ !contains(env.COMMIT_MESSAGES, '#skip') && github.event_name == 'push'}}
-        run: echo "commit dont have skip!"
