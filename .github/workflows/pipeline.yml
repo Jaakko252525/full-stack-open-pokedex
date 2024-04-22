@@ -35,9 +35,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
           WITH_V: false
-  echoing-dir-n-data:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: echo shi..
-        run: |
-          echo ls, $(date)
