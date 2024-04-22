@@ -29,12 +29,6 @@ jobs:
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
-  echoing-dir-n-datasss:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: echo shi..
-        run: |
-          echo ls, $(date)
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.64.0 # Don't use @master or @v1 unless you're happy to test the latest version
         env:
