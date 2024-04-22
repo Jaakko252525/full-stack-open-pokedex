@@ -38,9 +38,8 @@ jobs:
           WITH_V: false
         if: ${{ !contains(env.COMMIT_MESSAGES_2, '#skip') && github.event_name == 'push'}}
         uses: anothrNick/github-tag-action@1.64.0 
-  echoing-dir-n-data:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: echo shi..
-        run: |
-          echo ls, $(date)
+
+      - name: Send Discord notification ☺!
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
