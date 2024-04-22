@@ -40,5 +40,5 @@ jobs:
       - name: commit messages
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-        if: ${{ !contains('Hello world', 'llo')  }}
+        if: ${{ !contains('Hello world', 'siuu')  }}
         run: echo "$COMMIT_MESSAGES"
