@@ -42,7 +42,7 @@ jobs:
 
       - name: Notify Success
         if: success()
-        uses: Ilshidur/action-discord@v2
+        uses: rjstone/discord-webhook-notify@v1
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
           title: "Deployment Successful"
@@ -50,7 +50,7 @@ jobs:
 
       - name: Notify Failure
         if: failure()
-        uses: Ilshidur/action-discord@v2
+        uses: rjstone/discord-webhook-notify@v1
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
           title: "Deployment Failed"
