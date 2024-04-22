@@ -39,7 +39,21 @@ jobs:
         if: ${{ !contains(env.COMMIT_MESSAGES_2, '#skip') && github.event_name == 'push'}}
         uses: anothrNick/github-tag-action@1.64.0 
 
-      - name: Send Discord notification ☺!
-        uses: rjstone/discord-webhook-notify@v1
+
+      - name: Notify Success
+        if: success()
+        uses: Ilshidur/action-discord@v2
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "Deployment Successful"
+          description: "A new version has been successfully deployed."
+
+      - name: Notify Failure
+        if: failure()
+        uses: Ilshidur/action-discord@v2
+        with:
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "Deployment Failed"
+          description: |
+            The devloyment has failed. check logs.
+            Last commit: [commit-hash]([commit-url])
