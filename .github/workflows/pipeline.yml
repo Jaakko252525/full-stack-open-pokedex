@@ -40,20 +40,24 @@ jobs:
         uses: anothrNick/github-tag-action@1.64.0 
 
 
-      - name: Notify Success
+      - name: Success
+        uses: rjstone/discord-webhook-notify@v1
         if: success()
-        uses: rjstone/discord-webhook-notify@v1
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          title: "Deployment Successful"
-          description: "A new version has been successfully deployed."
-
-      - name: Notify Failure
+            severity: info
+            details: Test Succeeded!
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Failure
+        uses: rjstone/discord-webhook-notify@v1
         if: failure()
-        uses: rjstone/discord-webhook-notify@v1
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          title: "Deployment Failed"
-          description: |
-            The devloyment has failed. check logs.
-            Last commit: [commit-hash]([commit-url])
+            severity: error
+            details: Test Failed!
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Cancelled
+        uses: rjstone/discord-webhook-notify@v1
+        if: cancelled()
+        with:
+            severity: warn
+            details: Test Cancelled!
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
